@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bet Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 50px; }
+        .balance { font-size: 24px; color: gold; }
+        .bet-button { background: green; color: white; padding: 15px 30px; border: none; font-size: 18px; cursor: pointer; }
+        .bet-input { padding: 10px; font-size: 16px; margin: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Crash Game Bet Test</h1>
+    <div class="balance">Balance: ₹<span id="balance">5000</span></div>
+    <br>
+    <input type="number" id="betAmount" value="100" class="bet-input" placeholder="Bet Amount">
+    <br>
+    <button class="bet-button" onclick="placeBet()">Place Bet</button>
+    
+    <script>
+        let balance = 5000;
+        
+        function placeBet() {
+            const betAmount = parseFloat(document.getElementById('betAmount').value);
+            
+            if (betAmount <= 0 || isNaN(betAmount)) {
+                alert('Invalid bet amount!');
+                return;
+            }
+            
+            if (betAmount > balance) {
+                alert('Insufficient balance!');
+                return;
+            }
+            
+            // Update balance
+            balance -= betAmount;
+            document.getElementById('balance').textContent = balance;
+            
+            alert(`Bet placed: ₹${betAmount}. New balance: ₹${balance}`);
+        }
+    </script>
+</body>
+</html>
